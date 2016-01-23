@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FlipLabel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDu-VT-7tb" customClass="FlipLabel" customModule="FlipLabel" customModuleProvider="target">
+                                <rect key="frame" x="16" y="0.0" width="568" height="600"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="27"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfI-Xg-7oA">
+                                <rect key="frame" x="200" y="366" width="200" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Hsh-c0-4Os"/>
+                                    <constraint firstAttribute="height" constant="44" id="OkS-5F-vS7"/>
+                                </constraints>
+                                <state key="normal" title="alphabet"/>
+                                <connections>
+                                    <action selector="button1WasTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2lf-wG-VxL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Oe-ng-cDz">
+                                <rect key="frame" x="200" y="444" width="200" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Bo8-3b-rFl"/>
+                                    <constraint firstAttribute="width" constant="200" id="xk1-bx-inq"/>
+                                </constraints>
+                                <state key="normal" title="numeric"/>
+                                <connections>
+                                    <action selector="button2WasTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R0i-Xj-Ftg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8Oe-ng-cDz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="166" id="9kW-1x-f1Z"/>
+                            <constraint firstItem="GDu-VT-7tb" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Am0-CD-PNB"/>
+                            <constraint firstItem="kfI-Xg-7oA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LSC-MS-QGq"/>
+                            <constraint firstItem="GDu-VT-7tb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="PNO-0s-Mop"/>
+                            <constraint firstAttribute="trailing" secondItem="GDu-VT-7tb" secondAttribute="trailing" constant="16" id="bXg-6N-HJO"/>
+                            <constraint firstItem="8Oe-ng-cDz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mIM-OS-ki7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GDu-VT-7tb" secondAttribute="bottom" id="vNM-rS-HP5"/>
+                            <constraint firstItem="kfI-Xg-7oA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="88" id="x5b-jB-6sh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="GDu-VT-7tb" id="Q0j-Uc-4gh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="377"/>
+        </scene>
+    </scenes>
+</document>
