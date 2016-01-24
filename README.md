@@ -17,7 +17,7 @@ pod 'FlipLabel'
 
 ### Manually
 
-Add the [CustomizableActionSheet.swift](https://github.com/beryu/FlipLabel/blob/master/Source/FlipLabel.swift) file to your project.
+Add the [FlipLabel.swift](https://github.com/beryu/FlipLabel/blob/master/Source/FlipLabel.swift) file to your project.
 
 ## Usage
 
