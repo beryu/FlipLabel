@@ -1,7 +1,7 @@
 # FlipLabel
 ![Platform](https://cocoapod-badges.herokuapp.com/p/FlipLabel/badge.svg)
 ![License](https://img.shields.io/cocoapods/l/FlipLabel.svg?style=flat)
-![Cocoapods](https://cocoapod-badges.herokuapp.com/v/FlipLabel/badge.svg)
+![CocoaPods](https://cocoapod-badges.herokuapp.com/v/FlipLabel/badge.svg)
 
 Flip animation for UILabel
 
