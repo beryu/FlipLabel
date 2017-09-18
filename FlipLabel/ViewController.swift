@@ -11,19 +11,19 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var label: FlipLabel!
-    private weak var messageTimer: NSTimer?
+    private weak var messageTimer: Timer?
     private var currentMessageIndex = -1
     private var messages = ["Hello, world!", "This is demo.", "Use monospaced fonts."]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.messageTimer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "switchMessage", userInfo: nil, repeats: true)
+        self.messageTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(switchMessage), userInfo: nil, repeats: true)
     }
     
     @objc private func switchMessage() {
         self.currentMessageIndex = (self.currentMessageIndex + 1) % self.messages.count
-        self.label.playFlip(self.messages[self.currentMessageIndex])
+        self.label.playFlip(text: self.messages[self.currentMessageIndex])
     }
 }
 

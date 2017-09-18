@@ -19,8 +19,8 @@ public class FlipLabel: UILabel {
     private var animationTextLength: Int = 0
     private var currentTextLength: Int = 0
     private var lastTextLength: Int = 0
-    private weak var mainAnimationTimer: NSTimer?
-    private weak var dummyAnimationTimer: NSTimer?
+    private weak var mainAnimationTimer: Timer?
+    private weak var dummyAnimationTimer: Timer?
     private var dummyLabels = [UILabel]()
     private var randomChars: [String] = ["A" ,"B" ,"C" ,"D" ,"E" ,"F" ,"G" ,"H" ,"I" ,"J" ,"K" ,"L" ,"M" ,"N" ,"O" ,"P" ,"Q" ,"R" ,"S" ,"T" ,"U" ,"V" ,"W" ,"X" ,"Y" ,"Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@"]
     
@@ -30,7 +30,7 @@ public class FlipLabel: UILabel {
     
     // MARK: - Public methods
     
-    public func playFlip(text: String?, interval: NSTimeInterval = 0.03) {
+    public func playFlip(text: String?, interval: TimeInterval = 0.03) {
         // Reset
         if let mainAnimationTimer = self.mainAnimationTimer {
             mainAnimationTimer.invalidate()
@@ -88,17 +88,18 @@ public class FlipLabel: UILabel {
             self.addSubview(label)
 
             // Start dummy animation
-            self.dummyAnimationTimer = NSTimer.scheduledTimerWithTimeInterval(interval, target: self, selector: "onDummyFrame", userInfo: nil, repeats: true)
+            self.dummyAnimationTimer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(onDummyFrame), userInfo: nil, repeats: true)
 
             // Start main animation
-            self.mainAnimationTimer = NSTimer.scheduledTimerWithTimeInterval(interval, target: self, selector: "onMainFrame", userInfo: nil, repeats: true)
+            self.mainAnimationTimer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(onMainFrame), userInfo: nil, repeats: true)
         }
     }
     
     // MARK: - Private methods
     
     @objc private func onMainFrame() {
-        if self.currentMainIndex++ < 0 {
+        self.currentMainIndex += 1
+        if self.currentMainIndex < 0 {
             return
         }
         if self.currentMainIndex >= self.currentTextLength {
@@ -108,15 +109,16 @@ public class FlipLabel: UILabel {
             }
             return
         }
-        let text = (self.currentFullText as NSString).substringToIndex(self.currentMainIndex)
+        let text = (self.currentFullText as NSString).substring(to: self.currentMainIndex)
         self.text = text
         if self.lastTextLength > self.currentMainIndex + 1 {
-            self.text = text + (self.lastFullText as NSString).substringFromIndex(self.currentMainIndex)
+            self.text = text + (self.lastFullText as NSString).substring(from: self.currentMainIndex)
         }
     }
     
     @objc private func onDummyFrame() {
-        if self.currentDummyIndex++ >= self.animationTextLength + 2 {
+        self.currentDummyIndex += 1
+        if self.currentDummyIndex >= self.animationTextLength + 2 {
             if let dummyAnimationTimer = self.dummyAnimationTimer {
                 dummyAnimationTimer.invalidate()
                 self.dummyAnimationTimer = nil
@@ -128,7 +130,7 @@ public class FlipLabel: UILabel {
         }
         for dummyLabel in self.dummyLabels {
             var text = ""
-            for var i = 0, limit = self.currentDummyIndex + 2 + Int(arc4random_uniform(3)); i < limit && i < self.animationTextLength; i++ {
+            for i in 0 ..< min(self.currentDummyIndex + 2 + Int(arc4random_uniform(3)), self.animationTextLength) {
                 if self.currentDummyIndex - 2 <= i {
                     let randomIndex = arc4random_uniform(UInt32(self.randomChars.count))
                     text = text + self.randomChars[Int(randomIndex)]
@@ -140,10 +142,10 @@ public class FlipLabel: UILabel {
         }
         if self.currentTextLength < self.currentDummyIndex && self.lastTextLength > self.currentDummyIndex {
             var spaces = ""
-            for var j = self.currentTextLength + 1; j < self.currentDummyIndex; j++ {
+            for _ in stride(from: (self.currentTextLength + 1), to: self.currentDummyIndex, by: 1) {
                 spaces = spaces + " "
             }
-            self.text = self.currentFullText + spaces + (self.lastFullText as NSString).substringFromIndex(self.currentDummyIndex)
+            self.text = self.currentFullText + spaces + (self.lastFullText as NSString).substring(from: self.currentDummyIndex)
         }
     }
     
